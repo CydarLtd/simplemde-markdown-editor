@@ -633,8 +633,11 @@ function drawLink(editor) {
 function insertAtCursor(cm, text, url, desc, point) {
 	var start = text[0];
 	var end = text[1];
+	console.log(point);
 	if(typeof point != "undefined") {
 		point = cm.coordsChar(point);
+		console.log(point);
+		console.log("it got here!");
 	} else {
 		point = cm.getCursor("start");
 	}
@@ -648,7 +651,7 @@ function insertAtCursor(cm, text, url, desc, point) {
 /**
  * Action for drawing an img.
  */
-function drawImage(editor, url, desc) {
+function drawImage(editor, url, desc, point) {
 	url = (typeof url != "undefined") ? url : "http://";
 	desc = (typeof desc != "undefined") ? desc : "";
 	var cm = editor.codemirror;
@@ -659,7 +662,7 @@ function drawImage(editor, url, desc) {
 			return false;
 		}
 	}
-	insertAtCursor(cm, options.insertTexts.image, url, desc);
+	insertAtCursor(cm, options.insertTexts.image, url, desc, point);
 }
 
 /**
@@ -1967,8 +1970,8 @@ SimpleMDE.prototype.cleanBlock = function() {
 SimpleMDE.prototype.drawLink = function() {
 	drawLink(this);
 };
-SimpleMDE.prototype.drawImage = function(url, desc) {
-	drawImage(this, url, desc);
+SimpleMDE.prototype.drawImage = function(url, desc, point) {
+	drawImage(this, url, desc, point);
 };
 SimpleMDE.prototype.drawTable = function() {
 	drawTable(this);
