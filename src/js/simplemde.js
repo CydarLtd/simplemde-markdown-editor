@@ -633,11 +633,8 @@ function drawLink(editor) {
 function insertAtCursor(cm, text, url, desc, point) {
 	var start = text[0];
 	var end = text[1];
-	console.log(point);
 	if(typeof point != "undefined") {
 		point = cm.coordsChar(point);
-		console.log(point);
-		console.log("it got here!");
 	} else {
 		point = cm.getCursor("start");
 	}
