@@ -15939,17 +15939,6 @@ function toggleFullScreen(editor) {
 		wrap.previousSibling.className = wrap.previousSibling.className.replace(/\s*fullscreen\b/, "");
 	}
 
-
-	// Update toolbar button
-	var toolbarButton = editor.toolbarElements.fullscreen;
-
-	if(!/active/.test(toolbarButton.className)) {
-		toolbarButton.className += " active";
-	} else {
-		toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
-	}
-
-
 	// Hide side by side if needed
 	var sidebyside = cm.getWrapperElement().nextSibling;
 	if(/editor-preview-active-side/.test(sidebyside.className))
@@ -17201,17 +17190,6 @@ SimpleMDE.prototype.render = function(el) {
 	keyMaps["Enter"] = "newlineAndIndentContinueMarkdownList";
 	keyMaps["Tab"] = "tabAndIndentMarkdownList";
 	keyMaps["Shift-Tab"] = "shiftTabAndUnindentMarkdownList";
-	keyMaps["Esc"] = function(cm) {
-		if(cm.getOption("fullScreen")) toggleFullScreen(self);
-	};
-
-	document.addEventListener("keydown", function(e) {
-		e = e || window.event;
-
-		if(e.keyCode == 27) {
-			if(self.codemirror.getOption("fullScreen")) toggleFullScreen(self);
-		}
-	}, false);
 
 	var mode, backdrop;
 	if(options.spellChecker !== false) {
